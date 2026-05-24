@@ -3,8 +3,6 @@
 import { motion } from 'framer-motion'
 import BrowserMockup from './mockups/BrowserMockup'
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.blest.io'
-
 const bullets = [
   'Sin reuniones de onboarding',
   'Sin formularios de contacto',
@@ -12,7 +10,7 @@ const bullets = [
   'Empezás en menos de 30 segundos',
 ]
 
-export default function SandboxDemo() {
+export default function SandboxDemo({ onOpenSandbox }: { onOpenSandbox: () => void }) {
   return (
     <section id="sandbox" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -63,17 +61,15 @@ export default function SandboxDemo() {
               ))}
             </ul>
 
-            <a
-              href={APP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={onOpenSandbox}
               className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-white bg-indigo-700 hover:bg-indigo-800 rounded-md transition-colors shadow-sm"
             >
               Entrar al Sandbox
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </a>
+            </button>
           </motion.div>
         </div>
       </div>

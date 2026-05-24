@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import StatsStrip from '@/components/StatsStrip'
@@ -9,20 +12,24 @@ import Pricing from '@/components/Pricing'
 import SandboxDemo from '@/components/SandboxDemo'
 import FinalCTA from '@/components/FinalCTA'
 import WhatsAppButton from '@/components/WhatsAppButton'
+import SandboxModal from '@/components/SandboxModal'
 
 export default function Home() {
+  const [modalOpen, setModalOpen] = useState(false)
+  const openModal = () => setModalOpen(true)
+
   return (
     <main className="relative bg-white">
-      <Navbar />
-      <Hero />
+      <Navbar onOpenSandbox={openModal} />
+      <Hero onOpenSandbox={openModal} />
       <StatsStrip />
       <MobileAttendance />
       <StudentManagement />
       <ReportsAnalytics />
       <RolesPermissions />
-      <Pricing />
-      <SandboxDemo />
-      <FinalCTA />
+      <Pricing onOpenSandbox={openModal} />
+      <SandboxDemo onOpenSandbox={openModal} />
+      <FinalCTA onOpenSandbox={openModal} />
 
       {/* Footer */}
       <footer className="border-t border-slate-200 py-12 bg-white">
@@ -57,6 +64,7 @@ export default function Home() {
       </footer>
 
       <WhatsAppButton />
+      <SandboxModal open={modalOpen} onClose={() => setModalOpen(false)} />
     </main>
   )
 }

@@ -2,8 +2,6 @@
 
 import { motion } from 'framer-motion'
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.blest.io'
-
 const plans = [
   {
     name: 'Starter',
@@ -63,7 +61,7 @@ const plans = [
   },
 ]
 
-export default function Pricing() {
+export default function Pricing({ onOpenSandbox }: { onOpenSandbox: () => void }) {
   return (
     <section id="precios" className="py-24 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -166,10 +164,8 @@ export default function Pricing() {
               </ul>
 
               {/* CTA */}
-              <a
-                href={plan.name === 'Enterprise' ? '#sandbox' : APP_URL}
-                target={plan.name !== 'Enterprise' ? '_blank' : undefined}
-                rel="noopener noreferrer"
+              <button
+                onClick={plan.name === 'Enterprise' ? () => document.getElementById('sandbox')?.scrollIntoView({ behavior: 'smooth' }) : onOpenSandbox}
                 className={`block w-full text-center py-2.5 rounded-md text-sm font-medium transition-colors ${
                   plan.highlighted
                     ? 'bg-white text-indigo-700 hover:bg-indigo-50'
@@ -177,7 +173,7 @@ export default function Pricing() {
                 }`}
               >
                 {plan.cta}
-              </a>
+              </button>
             </motion.div>
           ))}
         </div>

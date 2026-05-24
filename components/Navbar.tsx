@@ -3,8 +3,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.blest.io'
-
 function BlestLogo() {
   return (
     <div className="flex items-center gap-2">
@@ -49,7 +47,11 @@ function BlestLogo() {
   )
 }
 
-export default function Navbar() {
+interface NavbarProps {
+  onOpenSandbox: () => void
+}
+
+export default function Navbar({ onOpenSandbox }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -94,14 +96,12 @@ export default function Navbar() {
           </nav>
 
           <div className="hidden md:flex items-center">
-            <a
-              href={APP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={onOpenSandbox}
               className="px-4 py-2 text-sm font-medium text-white bg-indigo-700 hover:bg-indigo-800 rounded-md transition-colors shadow-sm"
             >
               Probar Sandbox
-            </a>
+            </button>
           </div>
 
           {/* Mobile hamburger */}
@@ -143,14 +143,12 @@ export default function Navbar() {
                 </a>
               ))}
               <div className="pt-2 pb-1">
-                <a
-                  href={APP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  onClick={() => { setMenuOpen(false); onOpenSandbox() }}
                   className="block w-full text-center px-4 py-2 text-sm font-medium text-white bg-indigo-700 hover:bg-indigo-800 rounded-md transition-colors"
                 >
                   Probar Sandbox
-                </a>
+                </button>
               </div>
             </div>
           </motion.div>

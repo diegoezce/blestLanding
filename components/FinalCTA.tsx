@@ -2,9 +2,7 @@
 
 import { motion } from 'framer-motion'
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.blest.io'
-
-export default function FinalCTA() {
+export default function FinalCTA({ onOpenSandbox }: { onOpenSandbox: () => void }) {
   return (
     <section className="py-32 bg-indigo-700">
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -28,17 +26,15 @@ export default function FinalCTA() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a
-              href={APP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={onOpenSandbox}
               className="inline-flex items-center gap-2 px-8 py-4 bg-white text-indigo-700 hover:bg-indigo-50 font-semibold rounded-md transition-colors shadow-md text-base"
             >
               Probar Sandbox
               <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </a>
+            </button>
             <a
               href="#precios"
               className="inline-flex items-center gap-2 px-8 py-4 text-white font-medium border border-indigo-500 hover:bg-indigo-600 rounded-md transition-colors text-base"

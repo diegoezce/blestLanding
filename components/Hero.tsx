@@ -4,8 +4,6 @@ import { motion } from 'framer-motion'
 import BrowserMockup from './mockups/BrowserMockup'
 import PhoneMockup from './mockups/PhoneMockup'
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.blest.io'
-
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
   visible: (i = 0) => ({
@@ -15,7 +13,7 @@ const fadeUp = {
   }),
 }
 
-export default function Hero() {
+export default function Hero({ onOpenSandbox }: { onOpenSandbox: () => void }) {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-16 bg-white">
       {/* Subtle background decoration */}
@@ -69,17 +67,15 @@ export default function Hero() {
           custom={3}
           className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-16"
         >
-          <a
-            href={APP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={onOpenSandbox}
             className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-white bg-indigo-700 hover:bg-indigo-800 rounded-md transition-colors shadow-sm"
           >
             Probar Sandbox
             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
             </svg>
-          </a>
+          </button>
           <a
             href="#funcionalidades"
             className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 rounded-md transition-colors"
