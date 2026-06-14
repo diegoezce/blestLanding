@@ -97,6 +97,7 @@ export default function Hero({ onOpenSandbox }: { onOpenSandbox: () => void }) {
               screenshot="/screenshots/dashboard.png"
               alt="BLEST dashboard — Panel general del instituto"
               className="shadow-xl shadow-slate-200"
+              priority
             />
           </div>
 

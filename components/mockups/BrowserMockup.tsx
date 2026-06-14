@@ -4,9 +4,10 @@ interface BrowserMockupProps {
   screenshot: string
   alt: string
   className?: string
+  priority?: boolean
 }
 
-export default function BrowserMockup({ screenshot, alt, className = '' }: BrowserMockupProps) {
+export default function BrowserMockup({ screenshot, alt, className = '', priority = false }: BrowserMockupProps) {
   return (
     <div className={`rounded-xl overflow-hidden shadow-2xl border border-slate-200 bg-white ${className}`}>
       {/* Chrome bar */}
@@ -31,6 +32,7 @@ export default function BrowserMockup({ screenshot, alt, className = '' }: Brows
           src={screenshot}
           alt={alt}
           fill
+          priority={priority}
           className="object-cover object-top"
           sizes="(max-width: 768px) 100vw, 800px"
         />
